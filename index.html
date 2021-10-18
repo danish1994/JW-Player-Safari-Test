@@ -1,0 +1,46 @@
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="-1">
+    <meta http-equiv="CACHE-CONTROL" content="NO-CACHE">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=1">
+
+
+    <script type="text/javascript" src="//cdn.jwplayer.com/libraries/jMLiZQyA.js"></script>
+    <script type="module">
+      const api = window.jwplayer;
+      const jwplayer = window.jwplayer('jw');
+      const urlParams = new URLSearchParams(window.location.search);
+      const mediaId = urlParams.get('mediaId');
+      jwplayer.setup({
+        "playlist": "//cdn.jwplayer.com/v2/media/" + mediaId,
+        "aspectratio": "16:9",
+        "mute": true,
+        "autostart": true,
+        "preload": "auto"
+      })
+
+      jwplayer.on('pause', () => {
+        console.log('PAUSE CALLED');
+      });
+      jwplayer.on('play', () => {
+        console.log('PLAY CALLED');
+      });
+      jwplayer.on('error', (e) => {
+        console.log('ERROR', e);
+      });
+      jwplayer.on('playAttemptFailed', (e) => {
+        console.log('PLAY ATTEMPT FAILED', e);
+      });
+    </script>
+</head>
+<body>
+<div id="jw">
+
+</div>
+</body>
+</html>

@@ -12,11 +12,12 @@
 
     <script type="text/javascript" src="//cdn.jwplayer.com/libraries/jMLiZQyA.js"></script>
     <script type="module">
+      const textAreaDOM = document.getElementById('logs');
       const log = (message) => {
         console.log(message);
-        const textAreaDOM = document.getElementById('logs');
+        console.log('>>>>>>>>>>', textAreaDOM);
         if (textAreaDOM) {
-          textAreaDOM.innerText += `${new Date().toLocaleString()} - ${message}\n`;
+          textAreaDOM.innerHTML += `${new Date().toLocaleString()} - ${message}\n`;
         }
       }
       const api = window.jwplayer;

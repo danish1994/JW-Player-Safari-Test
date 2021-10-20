@@ -12,6 +12,13 @@
 
     <script type="text/javascript" src="//cdn.jwplayer.com/libraries/jMLiZQyA.js"></script>
     <script type="module">
+      const log = (message) => {
+        console.log(message);
+        const textAreaDOM = document.getElementById('logs');
+        if (textAreaDOM) {
+          textAreaDOM.innerText += `${new Date().toLocaleString()} - ${message}\n`;
+        }
+      }
       const api = window.jwplayer;
       const jwplayer = window.jwplayer('jw');
       const urlParams = new URLSearchParams(window.location.search);
@@ -25,16 +32,22 @@
       })
 
       jwplayer.on('pause', () => {
-        console.log('PAUSE CALLED');
+        log('PAUSE CALLED');
       });
       jwplayer.on('play', () => {
-        console.log('PLAY CALLED');
+        log('PLAY CALLED');
+      });
+      jwplayer.on('adPlay', () => {
+        log('AD PLAY CALLED');
+      });
+      jwplayer.on('adPause', () => {
+        log('AD PAUSE CALLED');
       });
       jwplayer.on('error', (e) => {
-        console.log('ERROR', e);
+        log('ERROR');
       });
       jwplayer.on('playAttemptFailed', (e) => {
-        console.log('PLAY ATTEMPT FAILED', e);
+        log('PLAY ATTEMPT FAILED');
       });
     </script>
 </head>
@@ -42,5 +55,8 @@
 <div id="jw">
 
 </div>
+<textarea style="width: 100%; margin-top: 1em; min-height: 25%;" id="logs">
+
+</textarea>
 </body>
 </html>

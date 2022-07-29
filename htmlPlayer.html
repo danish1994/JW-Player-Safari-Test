@@ -1,0 +1,58 @@
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="-1">
+    <meta http-equiv="CACHE-CONTROL" content="NO-CACHE">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=1">
+
+    <script type="module">
+      const textAreaDOM = document.getElementById('logs');
+      const videoPlayer = document.getElementById('video');
+      const log = (message) => {
+        console.log(message);
+        if (textAreaDOM) {
+          textAreaDOM.innerHTML += `${new Date().toLocaleString()} - ${message}\n`;
+        }
+      }
+
+      videoPlayer.onplaying = function () {
+        log('PLAY CALLED');
+      };
+      videoPlayer.onpause = function () {
+        log('PAUSE CALLED');
+      }
+      videoPlayer.onerror = function () {
+        log('ERROR');
+      }
+      videoPlayer.oncanplay = function () {
+        log('CAN_PLAY');
+      }
+      videoPlayer.oncomplete = function () {
+        log('COMPLETE');
+      }
+      // videoPlayer.ontimeupdate = function (e) {
+      //   const time = e.target.currentTime;
+      //   log('CURRENT_TIME: ' + time);
+      // }
+    </script>
+
+    <style>
+        video {
+            width: 100%;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+<video id="video" autoplay controls playsinline>
+    <source src="./demoVideo.mp4" type="video/mp4">
+</video>
+<textarea style="width: 100%; margin-top: 1em; min-height: 25%;" id="logs">
+
+</textarea>
+</body>
+</html>
